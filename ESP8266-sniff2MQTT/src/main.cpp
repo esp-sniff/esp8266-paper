@@ -15,8 +15,7 @@
 #define PURGETIME 600000
 #define MINRSSI -70
 
-// uint8_t channel = 1;
-unsigned int channel = 1;
+uint8_t channel = 1;
 int clients_known_count_old, aps_known_count_old;
 unsigned long sendEntry, deleteEntry;
 char jsonString[JBUFFER];

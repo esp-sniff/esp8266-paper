@@ -1,4 +1,6 @@
-// Expose Espressif SDK functionality
+/*
+ * Expose Espressif SDK functionality.
+ */
 extern "C" {
 #include "user_interface.h"
   typedef void (*freedom_outside_cb_t)(uint8 status);
@@ -113,7 +115,7 @@ int register_client(clientinfo &ci) {
 
 void print_beacon(beaconinfo beacon) {
   if (beacon.err != 0) {
-    //Serial.printf("BEACON ERR: (%d)  ", beacon.err);
+    // Serial.printf("BEACON ERR: (%d)  ", beacon.err);
   } else {
     Serial.printf(" BEACON: <=============== [%32s]  ", beacon.ssid);
     Serial.print(formatMac1(beacon.bssid));
