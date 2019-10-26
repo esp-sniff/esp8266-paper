@@ -1,13 +1,10 @@
-// This-->tab == "structures.h"
-
 #define ETH_MAC_LEN 6
 
 uint8_t broadcast1[3] = { 0x01, 0x00, 0x5e };
 uint8_t broadcast2[6] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
 uint8_t broadcast3[3] = { 0x33, 0x33, 0x00 };
 
-struct beaconinfo
-{
+struct beaconinfo {
   uint8_t bssid[ETH_MAC_LEN];
   uint8_t ssid[33];
   int ssid_len;
@@ -15,10 +12,10 @@ struct beaconinfo
   int err;
   signed rssi;
   uint8_t capa[2];
+  long lastDiscoveredTime;
 };
 
-struct clientinfo
-{
+struct clientinfo {
   uint8_t bssid[ETH_MAC_LEN];
   uint8_t station[ETH_MAC_LEN];
   uint8_t ap[ETH_MAC_LEN];
@@ -26,6 +23,7 @@ struct clientinfo
   int err;
   signed rssi;
   uint16_t seq_n;
+  long lastDiscoveredTime;
 };
 
 /* ==============================================
@@ -78,8 +76,7 @@ struct sniffer_buf2 {
   uint16_t len;
 };
 
-struct clientinfo parse_data(uint8_t *frame, uint16_t framelen, signed rssi, unsigned channel)
-{
+struct clientinfo parse_data(uint8_t *frame, uint16_t framelen, signed rssi, unsigned channel) {
   struct clientinfo ci;
   ci.channel = channel;
   ci.err = 0;
@@ -90,7 +87,7 @@ struct clientinfo parse_data(uint8_t *frame, uint16_t framelen, signed rssi, uns
   uint8_t *ap;
   uint8_t ds;
 
-  ds = frame[1] & 3;    //Set first 6 bits to 0
+  ds = frame[1] & 3; // Set first 6 bits to 0
   switch (ds) {
     // p[1] - xxxx xx00 => NoDS   p[4]-DST p[10]-SRC p[16]-BSS
     case 0:
@@ -132,8 +129,19 @@ struct clientinfo parse_data(uint8_t *frame, uint16_t framelen, signed rssi, uns
   return ci;
 }
 
-struct beaconinfo parse_beacon(uint8_t *frame, uint16_t framelen, signed rssi)
-{
+struct clientinfo parse_probe(uint8_t *frame, uint16_t framelen, signed rssi) {
+  struct clientinfo pi;
+  pi.channel = -1;
+  pi.err = 0;
+  pi.rssi = rssi;
+  struct sniffer_buf2 *sniffer = (struct sniffer_buf2*) frame;
+  memset(pi.bssid,0xFF,ETH_MAC_LEN);
+  memcpy(pi.station, frame + 10, ETH_MAC_LEN);
+  if ((pi.station[0] & 2) == 2) pi.channel=-2; // Randomised MAC !
+  return pi;
+}
+
+struct beaconinfo parse_beacon(uint8_t *frame, uint16_t framelen, signed rssi) {
   struct beaconinfo bi;
   bi.ssid_len = 0;
   bi.channel = 0;
@@ -181,4 +189,3 @@ struct beaconinfo parse_beacon(uint8_t *frame, uint16_t framelen, signed rssi)
   memcpy(bi.bssid, frame + 10, ETH_MAC_LEN);
   return bi;
 }
-
