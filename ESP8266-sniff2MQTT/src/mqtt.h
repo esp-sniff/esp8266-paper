@@ -6,7 +6,7 @@ PubSubClient client(espClient);
 
 
 // MQTT
-const char* mqttServer = "192.168.0.203";
+const char* mqttServer = "broker.hivemq.com";
 
 /*
 

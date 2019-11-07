@@ -25,8 +25,8 @@ int nbrDevices = 0;
 int usedChannels[15];
 
 #ifndef CREDENTIALS
-#define mySSID "*****"
-#define myPASSWORD "******"
+#define mySSID "raspi-webgui"
+#define myPASSWORD "ChangeMe"
 #endif
 
 StaticJsonBuffer<JBUFFER>  jsonBuffer;
