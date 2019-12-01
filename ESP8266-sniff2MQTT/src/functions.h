@@ -169,15 +169,15 @@ void promisc_cb(uint8_t *buf, uint16_t len) {
     if ((sniffer->buf[0] == 0x80)) {
       struct beaconinfo beacon = parse_beacon(sniffer->buf, 112, sniffer->rx_ctrl.rssi);
       if (register_beacon(beacon) == 0) {
-        print_beacon(beacon);
-        nothing_new = 0;
+        // print_beacon(beacon);
+        // nothing_new = 0;
       }
     } else if ((sniffer->buf[0] == 0x40)) {
       struct clientinfo ci = parse_probe(sniffer->buf, 36, sniffer->rx_ctrl.rssi);
       // if (memcmp(ci.bssid, ci.station, ETH_MAC_LEN)) {
         if (register_client(ci) == 0) {
-          print_client(ci);
-          nothing_new = 0;
+          // print_client(ci);
+          // nothing_new = 0;
         }
       // }
     }
@@ -188,8 +188,8 @@ void promisc_cb(uint8_t *buf, uint16_t len) {
       struct clientinfo ci = parse_data(sniffer->buf, 36, sniffer->rx_ctrl.rssi, sniffer->rx_ctrl.channel);
       if (memcmp(ci.bssid, ci.station, ETH_MAC_LEN)) {
         if (register_client(ci) == 0) {
-          print_client(ci);
-          nothing_new = 0;
+          // print_client(ci);
+          // nothing_new = 0;
         }
       }
     }

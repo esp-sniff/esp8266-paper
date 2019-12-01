@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>
-// #include <credentials.h>
 #include <set>
 #include <string>
 #include "./functions.h"
@@ -9,7 +8,7 @@
 
 #define disable 0
 #define enable  1
-#define SENDTIME 30000
+#define SENDTIME 15000
 #define MAXDEVICES 60
 #define JBUFFER 15+ (MAXDEVICES * 40)
 #define PURGETIME 600000
@@ -79,7 +78,7 @@ void showDevices() {
   Serial.println("");
   Serial.println("-------------------Device DB-------------------");
   Serial.printf("%4d Devices + Clients.\n",aps_known_count + clients_known_count); // show count
-
+/*
   // show Beacons
   for (int u = 0; u < aps_known_count; u++) {
     Serial.printf( "%4d ",u); // Show beacon number
@@ -101,6 +100,7 @@ void showDevices() {
     Serial.print(" channel ");
     Serial.println(clients_known[u].channel);
   }
+*/
 }
 
 void sendDevices() {
@@ -113,7 +113,7 @@ void sendDevices() {
   while (!client.connected()) {
     Serial.println("Connecting to MQTT...");
 
-    if (client.connect("ESP32Client", "admin", "admin" )) {
+    if (client.connect("ESP32Client")) {
       Serial.println("connected");
     } else {
       Serial.print("failed with state ");
@@ -152,14 +152,15 @@ void sendDevices() {
   root.printTo(jsonString);
   //  Serial.println((jsonString));
   //  Serial.println(root.measureLength());
-  if (client.publish("Sniffer", jsonString) == 1) Serial.println("Successfully published");
-  else {
+  if (client.publish("Sniffer", jsonString) == 1) {
+    Serial.println("Successfully published");
+  } else {
     Serial.println();
     Serial.println("!!!!! Not published. Please add #define MQTT_MAX_PACKET_SIZE 2048 at the beginning of PubSubClient.h file");
     Serial.println();
   }
   client.loop();
-  client.disconnect ();
+  client.disconnect();
   delay(100);
   wifi_promiscuous_enable(enable);
   sendEntry = millis();
@@ -181,19 +182,26 @@ void loop() {
   boolean sendMQTT = false;
   wifi_set_channel(channel);
   while (true) {
+    delay(5000);
     nothing_new++;                          // Array is not finite, check bounds and adjust if required
-    if (nothing_new > 200) {                // monitor channel for 200 ms
+    if (nothing_new > 10) {                // monitor channel for 200 ms
       nothing_new = 0;
+      Serial.printf("Switching channel from %d", channel);
       channel++;
+      Serial.printf(" to %d\n", channel);
       if (channel == 15) break;             // Only scan channels 1 to 14
       wifi_set_channel(channel);
+    } else {
+      Serial.printf("[%d] staying on channel %d\n", nothing_new, channel);
     }
     delay(1);  // critical processing timeslice for NONOS SDK! No delay(0) yield()
-        if (clients_known_count > clients_known_count_old) {
+    if (clients_known_count > clients_known_count_old) {
+      Serial.printf("Found new client on channel %d! %d => %d\n", channel, clients_known_count_old, clients_known_count);
       clients_known_count_old = clients_known_count;
       sendMQTT = true;
     }
     if (aps_known_count > aps_known_count_old) {
+      Serial.printf("Found new APs on channel %d! %d => %d\n", channel, aps_known_count_old, aps_known_count);
       aps_known_count_old = aps_known_count;
       sendMQTT = true;
     }
