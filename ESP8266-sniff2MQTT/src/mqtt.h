@@ -1,3 +1,4 @@
+#define MQTT_MAX_PACKET_SIZE 2048 // TODO: import library
 #include <PubSubClient.h>
 #include <ESP8266WiFi.h>
 
