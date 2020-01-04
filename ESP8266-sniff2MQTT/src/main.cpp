@@ -182,8 +182,8 @@ void loop() {
   boolean sendMQTT = false;
   wifi_set_channel(channel);
   while (true) {
-    delay(5000);
-    nothing_new++;                          // Array is not finite, check bounds and adjust if required
+    delay(2500);
+    nothing_new++;                         // Array is not finite, check bounds and adjust if required
     if (nothing_new > 10) {                // monitor channel for 200 ms
       nothing_new = 0;
       Serial.printf("Switching channel from %d", channel);
