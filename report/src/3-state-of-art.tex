@@ -1,18 +1,30 @@
 \section{Stato dell'arte}
 
-Riassumere le soluzioni presenti in letteratura inerenti al problema in esame. Per ciascuna, discutere le principali diversità o affinità rispetto al progetto presentato. Nel caso non siano presenti soluzioni direttamente comparabili a quella presentata descrivere comunque le principali tecniche note per affrontare la tematica trattata.\\
+% Riassumere le soluzioni presenti in letteratura inerenti al problema in esame.
+% Per ciascuna, discutere le principali diversità o affinità rispetto al progetto presentato.
 
-Le soluzioni esposte devono essere corredate degli opportuni riferimenti bibliografici. Nel caso si tratti di soluzioni già operative sul mercato, devono essere indicate le fonti (online) dove poter accedere al servizio o approfondirne i contenuti.\\
+% Le soluzioni esposte devono essere corredate degli opportuni riferimenti bibliografici.
+% Nel caso si tratti di soluzioni già operative sul mercato, devono essere indicate le fonti (online) dove poter accedere al servizio o approfondirne i contenuti.\\
+
+% Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nelle immagini, schemi):
+% Numero minimo di battute per 2 componenti: 2500
+% Numero massimo di battute per 2 componenti: 4500
+
+Nella società moderna, esistono molte implementazioni di tracking dell'affollamento sia in ambienti outdoor che in ambienti indoor;
+inoltre, differenti implementazioni adottano differenti metodi di rilevamento anche in base alla variabilità delle esigenze.
+
+In questa Sezione, verranno prese in considerazione solo le implementazioni che impiegano la rilevazione di pacchetti WiFi per la stima del numero di individui.
+
+\subsection{Il ``caso'' Waitz}
+
+L'idea dietro alla realizzazione di questo progetto è nata dalla visione di un video\footnote{\url{https://youtu.be/UeAKTjx_eKA}} del canale YouTube LiveOverflow,
+nel quale veniva studiato il contenuto della SD di uno dei Raspberry Pi Zero che avevano attirato l'attenzione su Reddit dopo essere stati trovati nascosti in diversi punti di un college americano.
+
+Dopo una fase di reverse engineering (non rilevante ai fini di questo progetto), si è risaliti alla compagnia \textbf{Waitz}\footnote{\url{https://waitz.io/}},
+assunta dalle Università di San Diego e di Santa Barbara per avere informazioni in tempo reale dell'affollamento delle aule studio dei rispettivi campus.
+
+La compagnia non ha rilasciato numerosi dettagli sulle tecnologie impiegate, ma da quanto pubblicamente affermato a seguito del caso
+pare vengano utilizzati numerosi Raspberry Pi con schede WiFi e Bluetooth aggiuntive per intercettare i pacchetti inviati dai dispositivi degli studenti, che vengono utilizzati per generare stime tramite indici statistici ignoti.
 
 
-Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nelle immagini, schemi):
-
-\vspace{1cm}
-\begin{tabular}{l|rr}
- & Numero minimo di battute & Numero massimo di battute \\
- \hline
- 1 componente & 2000 & 3000 \\
- 2 componenti & 2500 & 4500 \\
- 3 componenti & 3000 & 6000 \\
- \hline
-\end{tabular}
+\textbf{TODO AGGIUNGERE ESEMPI DALLO STATO DELL'ARTE}
