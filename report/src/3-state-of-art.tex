@@ -10,21 +10,40 @@
 % Numero minimo di battute per 2 componenti: 2500
 % Numero massimo di battute per 2 componenti: 4500
 
+Per quanto riguarda lo studio dello stato dell'arte, si ritiene importante distinguere le implementazioni in uso dalle tecnologie di rilevazione documentate in letteratura,
+in quanto di rado le aziende diffondono molti dettagli in merito alle loro soluzioni implementative. % TODO: va bene così? non mi convince...
+
+\subsection{Sistemi completi operativi sul mercato}
+
 Nella società moderna, esistono molte implementazioni di tracking dell'affollamento sia in ambienti outdoor che in ambienti indoor;
 inoltre, differenti implementazioni adottano differenti metodi di rilevamento anche in base alla variabilità delle esigenze.
 
-In questa Sezione, verranno prese in considerazione solo le implementazioni che impiegano la rilevazione di pacchetti WiFi per la stima del numero di individui.
+In questa Sottosezione, verranno prese in considerazione solo le implementazioni che impiegano la rilevazione di pacchetti WiFi per la stima del numero di individui.
 
-\subsection{Il ``caso'' Waitz}
+\subsubsection{Le pattumiere connesse di Renew London}
 
-L'idea dietro alla realizzazione di questo progetto è nata dalla visione di un video\footnote{\url{https://youtu.be/UeAKTjx_eKA}} del canale YouTube LiveOverflow,
+Se attualmente il tracking dei dispositivi è una soluzione già analizzata sia dalle aziende che dai legislatori, nel 2013 la situazione era invece più incerta. % TODO: l'italiano va bene qui?
+Renew London\footnote{\url{https://web.archive.org/web/20130616035548/http://renewlondon.com/}} è stata una startup di pubblicità con base a Londra
+che nel periodo delle Olimpiadi del 2012 aveva posizionato nella capitale brittannica 100 bidoni dell'immondizia dotati di schermo, impiegato per visualizzare pubblicità come dei normali \textit{advertisement kiosk}.
+
+La startup ha fatto molto discutere dopo che un articolo di Quartz\footnote{\url{https://qz.com/112873/this-recycling-bin-is-following-you/}} % TODO: spostare link da footnote a bibliografia
+ha messo in evidenza come, a seguito di una collaborazione con Presence Orb\footnote{\url{http://www.presenceorb.com/}},
+12 di questi bidoni fossero stati dotati di ricevitori WiFi in grado di tenere traccia degli indirizzi MAC degli smartphone di chi passava loro vicino e di mostrare loro pubblicità mirate.
+
+L'articolo fu ripreso da molti altri giornali e riviste e, nonostante Presence Orb e Renew London dichiararono di non tenere traccia di nulla di più che MAC address aggregati, il 12 agosto 2013 il comune di Londra chiede la loro rimozione.
+
+\subsubsection[Il ``caso Waitz'']{Il ``caso Waitz'' (UC San Diego \& UC Santa Barbara)}
+
+L'idea dietro alla realizzazione di questo progetto è nata dalla visione di un video\footnote{\url{https://youtu.be/UeAKTjx_eKA}} del canale YouTube LiveOverflow, datato novembre 2018,
 nel quale veniva studiato il contenuto della SD di uno dei Raspberry Pi Zero che avevano attirato l'attenzione su Reddit dopo essere stati trovati nascosti in diversi punti di un college americano.
 
-Dopo una fase di reverse engineering (non rilevante ai fini di questo progetto), si è risaliti alla compagnia \textbf{Waitz}\footnote{\url{https://waitz.io/}},
-assunta dalle Università di San Diego e di Santa Barbara per avere informazioni in tempo reale dell'affollamento delle aule studio dei rispettivi campus.
+Dopo una fase di reverse engineering (non rilevante ai fini di questo progetto), lo youtuber e la community sono riusciti a risalire alla compagnia \textbf{Waitz}\footnote{\url{https://waitz.io/}}, % TODO: spostare link da footnote a bibliografia
+che poi si è scoperto essere stata assunta dall'Università per avere informazioni in tempo reale dell'affollamento delle aule studio dei rispettivi campus.
+Attualmente, Waitz lavora con le Università di San Diego e di Santa Barbara e il servizio è accessibile tramite app e portale web.
 
 La compagnia non ha rilasciato numerosi dettagli sulle tecnologie impiegate, ma da quanto pubblicamente affermato a seguito del caso
 pare vengano utilizzati numerosi Raspberry Pi con schede WiFi e Bluetooth aggiuntive per intercettare i pacchetti inviati dai dispositivi degli studenti, che vengono utilizzati per generare stime tramite indici statistici ignoti.
 
+\subsection[Tecnologie di rilevazione]{Tecnologie di rilevazione di dispositivi dotati di WiFi}
 
-\textbf{TODO AGGIUNGERE ESEMPI DALLO STATO DELL'ARTE}
+% TODO

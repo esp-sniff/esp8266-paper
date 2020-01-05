@@ -16,11 +16,6 @@ As thanks and references:
     - 2016-10-13 compiled on Linux 16.3 using Arduino 1.6.12
     - License: [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
   
-  - Hendrik Linka (2016):
-    [ESP8266-SSID-Text-Broadcast](https://hackaday.io/project/12863-esp8266-ssid-text-broadcast)
-
-    - Code on [GitHub](https://github.com/H-LK/ESP8266-SSID-Text-Broadcast)
-  
   - José Luis Garrido (2016):
     [ESP8266 WifiSniffer](https://github.com/kalanda/esp8266-sniffer/blob/master/README.md)
     
