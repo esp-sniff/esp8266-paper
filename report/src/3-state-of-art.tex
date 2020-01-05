@@ -10,29 +10,23 @@
 % Numero minimo di battute per 2 componenti: 2500
 % Numero massimo di battute per 2 componenti: 4500
 
-Per quanto riguarda lo studio dello stato dell'arte, si ritiene importante distinguere le implementazioni in uso dalle tecnologie di rilevazione documentate in letteratura,
-in quanto di rado le aziende diffondono molti dettagli in merito alle loro soluzioni implementative. % TODO: va bene così? non mi convince...
-
-\subsection{Sistemi completi operativi sul mercato}
-
 Nella società moderna, esistono molte implementazioni di tracking dell'affollamento sia in ambienti outdoor che in ambienti indoor;
 inoltre, differenti implementazioni adottano differenti metodi di rilevamento anche in base alla variabilità delle esigenze.
 
 In questa Sottosezione, verranno prese in considerazione solo le implementazioni che impiegano la rilevazione di pacchetti WiFi per la stima del numero di individui.
 
-\subsubsection{Le pattumiere connesse di Renew London}
+\subsection[Renew London \& Presence Orb]{Le pattumiere connesse di Renew London}
 
-Se attualmente il tracking dei dispositivi è una soluzione già analizzata sia dalle aziende che dai legislatori, nel 2013 la situazione era invece più incerta. % TODO: l'italiano va bene qui?
+Se attualmente il tracking dei dispositivi è una soluzione già analizzata sia dalle aziende che dai legislatori, nel 2013 la situazione era invece più incerta.
 Renew London\footnote{\url{https://web.archive.org/web/20130616035548/http://renewlondon.com/}} è stata una startup di pubblicità con base a Londra
 che nel periodo delle Olimpiadi del 2012 aveva posizionato nella capitale brittannica 100 bidoni dell'immondizia dotati di schermo, impiegato per visualizzare pubblicità come dei normali \textit{advertisement kiosk}.
 
-La startup ha fatto molto discutere dopo che un articolo di Quartz\footnote{\url{https://qz.com/112873/this-recycling-bin-is-following-you/}} % TODO: spostare link da footnote a bibliografia
-ha messo in evidenza come, a seguito di una collaborazione con Presence Orb\footnote{\url{http://www.presenceorb.com/}},
+La startup ha fatto molto discutere dopo che un articolo di Quartz~\cite{Datoo2013} ha messo in evidenza come, a seguito di una collaborazione con Presence Orb\footnote{\url{http://www.presenceorb.com/}},
 12 di questi bidoni fossero stati dotati di ricevitori WiFi in grado di tenere traccia degli indirizzi MAC degli smartphone di chi passava loro vicino e di mostrare loro pubblicità mirate.
 
 L'articolo fu ripreso da molti altri giornali e riviste e, nonostante Presence Orb e Renew London dichiararono di non tenere traccia di nulla di più che MAC address aggregati, il 12 agosto 2013 il comune di Londra chiede la loro rimozione.
 
-\subsubsection[Il ``caso Waitz'']{Il ``caso Waitz'' (UC San Diego \& UC Santa Barbara)}
+\subsection[Waitz (UC San Diego \& UC Santa Barbara)]{Il ``caso Waitz'' su Reddit}
 
 L'idea dietro alla realizzazione di questo progetto è nata dalla visione di un video\footnote{\url{https://youtu.be/UeAKTjx_eKA}} del canale YouTube LiveOverflow, datato novembre 2018,
 nel quale veniva studiato il contenuto della SD di uno dei Raspberry Pi Zero che avevano attirato l'attenzione su Reddit dopo essere stati trovati nascosti in diversi punti di un college americano.
@@ -44,6 +38,30 @@ Attualmente, Waitz lavora con le Università di San Diego e di Santa Barbara e i
 La compagnia non ha rilasciato numerosi dettagli sulle tecnologie impiegate, ma da quanto pubblicamente affermato a seguito del caso
 pare vengano utilizzati numerosi Raspberry Pi con schede WiFi e Bluetooth aggiuntive per intercettare i pacchetti inviati dai dispositivi degli studenti, che vengono utilizzati per generare stime tramite indici statistici ignoti.
 
-\subsection[Tecnologie di rilevazione]{Tecnologie di rilevazione di dispositivi dotati di WiFi}
+\subsection[Altri esempi, privacy e anonimizzazione]{Altri esempi, il problema della privacy e i tentativi di anonimizzazione}
 
-% TODO
+L'utilizzo di dispositivi per il monitoraggio della folla tramite WiFi è divenuto abbastanza popolare in ambienti con un grandle passaggio di gente come grandi negozi, centri commerciali e campus universitari, dunque gli esempi sarebbero innumerevoli.
+In bibliografia sono riportati ulteriori articoli e ricerce in merito.
+\nocite{Cohan2013,Kalogianni2015,Scheuner2016,Musa2012}
+
+% Di seguito sono riportati brevemente ulteriori esempi.
+
+% \begin{itemize}
+%   \item
+%     Forbes~\cite{Cohan2013} ha trattato della tecnologia Euclid utilizzata da Nordstrom per tracciare il movimento di individui all'interno dei propri negozi;
+%   \item
+%     basandosi su una ricerca canadese~\cite{Kalogianni2015}, un gruppo di un'Università olandese ha documentato la realizzazione una rete per il monitoraggio dei ritmi all'interno del campus della Delft University of Technology;
+%   \item
+%     una ricerca~\cite{Scheuner2016} simile alla precedente ha portato alla realizzazione di Probr, un sistema di analisi di una miriade di dati raccoglibili con questa tecnologia.
+% \end{itemize}
+
+Come messo più volte in evidenza (come ad esempio dal Washington Post~\cite{Fung2013}), queste tecniche rappresentano un problema per la privacy per il consumatore,
+tanto da mobilitare i produttori di smartphone verso meccanismi di randomizzazione dell'indirizzo MAC\@.
+
+Purtroppo, tali soluzioni non si sono rivelate particolarmente efficaci, in quanto facilmente aggirabili
+tramite confronto dei bit riservati al vendor con i registri dell'IEEE~\cite{Claburn2017} e/o forzando l'invio del MAC reale inviando un RTS frame ai client, ottenendo in risposta un CTS frame con l'indirizzo desiderato~\cite{Martin2017}.
+
+% (BleepingComputer\footnote{\url{https://www.bleepingcomputer.com/news/security/researchers-break-mac-address-randomization-and-track-100-percent-of-test-devices/}} riassume i risultati di una ricerca di cybersecurity~\cite{Martin_2017} in merito).
+
+Risulta importante, ai fini di questo progetto, essere a conoscenza dei requisiti di anonimizzazione imposti dalla legge;
+inoltre, è importante essere a conoscenza delle contromisure dei dispositivi e gestire gli indirizzi MAC randomizzati per evitare misurazioni errate
