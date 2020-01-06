@@ -1,18 +1,29 @@
 \section{Analisi dei requisiti}
 
-In questa sezione esporre brevemente i requisiti a cui il sistema proposto deve rispondere, concentrando l'attenzione sugli aspetti più rilevanti e facendo eventualmente uso di opportuni diagrammi di alto livello.\\
+% Esporre brevemente i requisiti a cui il sistema proposto deve rispondere.
+% Concentrare l'attenzione sugli aspetti più rilevanti, facendo eventualmente uso di opportuni diagrammi di alto livello.
 
-Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nelle immagini, schemi):
+% Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nelle immagini, schemi):
+% Numero minimo di battute per 2 componenti: 6000
+% Numero massimo di battute per 2 componenti: 8000
 
-\vspace{1cm}
-\begin{tabular}{l|rr}
- & Numero minimo di battute & Numero massimo di battute \\
- \hline
- 1 componente & 4000 & 6000 \\
- 2 componenti & 6000 & 8000 \\
- 3 componenti & 8000 & 10000 \\
- \hline
-\end{tabular}
+Per questo progetto, l'obiettivo di massima è la realizzazione di un sistema impiegabile in un ambiente indoor di tipo universitario (in particolare, una biblioteca dotata di aule studio),
+monitorando il numero di persone stimato per stanza per tutto il periodo di funzionamento del sistema.
+% TODO: ^ non mi convince, meglio rendere più generico e spiegare dopo
+% TODO: spiegare che usa il WiFi
+
+Un servizio di monitoraggio dell'affollamento di ambienti indoor consiste in una serie di sensori distribuiti nelle stanze dell'edificio che registrano le presenze;
+poiché si assume essere un luogo pubblico, il sistema deve poter monitorare l'ambiente senza dipendere dalla collaborazione attiva da parte dell'utente.
+
+Il servizio deve essere facilmente fruibile e non deve invasivo né per l'edificio né per l'infrastruttura di rete esistente.
+I sensori possono dunque essere più o meno complessi compatibilimente con le esigenze dell'ambiente di installazione.
+
+Infine, dai casi riportati in letteratura si può dedurre che il problema della privacy nella gestione dei dati è di fondamentale importanza e va considerato assolutamente.
+
+\subsection{Raccolta dei requisiti}
+
+Per poter condurre un lavoro efficace, si è deciso in inziare dalla scelta di un ambiente reale e di effettuarne l'analisi, eventualmente con la collaborazione della struttura stessa.
+
 
 \subsection{Requisti funzionali}
 
