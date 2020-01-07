@@ -28,14 +28,15 @@
 
 %% Font
 \usepackage{fontspec}
-\setmainfont[Ligatures=TeX]{Latin Modern Roman}
-\setsansfont[Ligatures=TeX]{Latin Modern Sans}
-\setmonofont[Ligatures=TeX]{Latin Modern Mono}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont[SmallCapsFont={* Caps}]{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
 
 %% Math
 \usepackage{amsmath}
 \usepackage[math-style=ISO]{unicode-math}
-\setmathfont[Ligatures=TeX]{Latin Modern Math}
+\setmathfont{Latin Modern Math}
 \usepackage[
   output-decimal-marker={,},
   binary-units
