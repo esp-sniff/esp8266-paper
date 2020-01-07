@@ -90,8 +90,33 @@ In aggiunta ai requisiti elencati nella \Cref{subsec:req:func}, ne sono stati in
 
 \begin{description}
   \item[Semplicità di utilizzo]
+    Il sistema deve risultare il quanto più possibile semplice ed intuitivo nell'utilizzo per la maggior parte degli utenti;
+    ciò significa semplificare per quanto possibile le procedure per accedere alle funzionalità del sistema (ad esempio, realizzando un interfaccia web pubblicamente accessibile).
   \item[Architettura distribuita]
+    Il sistema deve essere pensato per poter scalare da un ambiente ristretto composto da un singolo edificio con singola stanza ad una struttura più estesa composta da più edifici e/o più stanze;
+    di conseguenza, affidarsi ad un'architettura monolitca sarebbe decisamente complicato e inefficiente.
+
+    Per riuscire a garantire un corretto ed efficace funzionamento del sistema, occorre prendere in considerazione un'architettura distribuita e le conseguenti problematiche:
+
+    \begin{description}
+      \item[Consistenza]
+        Il sistema deve riuscire a mantenere lo stato il più possibile consistente tra le repliche per supportare il carico di lavoro.
+      \item[Scalabilità]
+        Il sistema deve riuscire a gestire in maniera ottimale il carico a cui sottoposto.
+      \item[Efficienza]
+        Il sistema deve riuscire a rispondere a tutte le richieste senza tralasciarne alcuna.
+    \end{description}
+
   \item[Privacy]
+    Anche considerando le problematiche legali segnalate nella \Cref{sec:state-of-art}, la corretta anonimizzazione dei dati deve essere presa in considerazione.
   \item[Sicurezza]
-  \item[Ingombro/invasività dei sensori]
+    Per quanto pubblicamente \emph{consultabile}, il sistema deve permettere l'inserimento dei dati solo alle componenti autorizzate del sistema.
+    In condizioni normali, non deve essere possibile per un utente umano modificare i contenuti raccolti;
+    in casi eccezionali, il manutentore dovrebbe agire manualmente tramite API e con un token di autenticazione richiedibile per l'occasione.
+  \item[Ingombro dei sensori e autonomia]
+    Poiché il sistema non deve richiedere un'installazione invasiva, i sensori e i server locali devono essere:
+    \begin{itemize}
+      \item sufficientemente piccoli da poter essere nascosti in mobili già presenti nei locali senza modificazioni fisiche dell'ambiente;
+      \item alimentabili in modo ``flessibile'' da batterie o da prese a muro.
+    \end{itemize}
 \end{description}
