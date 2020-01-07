@@ -9,8 +9,8 @@
 
 Per questo progetto, l'obiettivo di massima è la realizzazione di un sistema impiegabile in un ambiente indoor di tipo universitario (in particolare, una biblioteca dotata di aule studio),
 monitorando il numero di persone stimato per stanza per tutto il periodo di funzionamento del sistema.
-% TODO: ^ non mi convince, meglio rendere più generico e spiegare dopo
-% TODO: spiegare che usa il WiFi
+
+\unsure{Dovremmo spiegare qua che usa il WiFi?} % TODO: spiegare che usa il WiFi
 
 Un servizio di monitoraggio dell'affollamento di ambienti indoor consiste in una serie di sensori distribuiti nelle stanze dell'edificio che registrano le presenze;
 poiché si assume essere un luogo pubblico, il sistema deve poter monitorare l'ambiente senza dipendere dalla collaborazione attiva da parte dell'utente.
@@ -25,13 +25,13 @@ Infine, dai casi riportati in letteratura si può dedurre che il problema della 
 Per poter condurre un lavoro efficace, si è deciso in inziare dalla scelta di un ambiente reale e di effettuarne l'analisi, eventualmente con la collaborazione della struttura stessa.
 
 Come ambiente di riferimento, si è deciso di considerare la Biblioteca Centrale Roberto Ruffilli del Campus di Forlì.
-Essa è strutturata su due piani e diverse stanze adibite ad aule studio. % TODO: inserire numero reale di stanze
+Esso è un ambiente indoor strutturato su due piani e \improvement{inserire numero reale di stanze} diverse stanze adibite ad aule studio. % TODO: inserire numero reale di stanze
 
 Dialogando con il personale e con alcuni studenti, si è manifestato l'interesse ad un sistema semplice ed immediato in grado di dare visivamente informazioni sul numero di persone;
 sembra sia necessario che l'eventuale sistema non sia invasivo, né per quanto riguarda l'installazione dell'hardware, né per quanto riguarda l'eventuale software necessario per la sua fruizione.
 Per quanto non sia fondamentale, il personale della libreria ha mostrato interesse verso la possibilità di avere alcuni statistici oltre al conteggio attuale, purché siano dati liberamente pubblicabili e nel pieno rispetto della privacy sui dati.
 
-\subsection{Requisti funzionali}
+\subsection{Requisti funzionali}\label{subsec:req:func}
 
 Dall'analisi delle informazioni raccolte, sono state identificate le seguenti entità che interagiscono per il corretto funzionamento del sistema:
 
@@ -86,4 +86,12 @@ ad esempio, interecettando i pacchetti WiFi contenenti l'indirizzo MAC di ciascu
 
 \subsection{Requisiti non funzionali}
 
+In aggiunta ai requisiti elencati nella \Cref{subsec:req:func}, ne sono stati individuati altri di natura tecnlogica/implementativa:
 
+\begin{description}
+  \item[Semplicità di utilizzo]
+  \item[Architettura distribuita]
+  \item[Privacy]
+  \item[Sicurezza]
+  \item[Ingombro/invasività dei sensori]
+\end{description}
