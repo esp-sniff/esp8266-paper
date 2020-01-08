@@ -18,11 +18,12 @@ Per essere realmente dispiegabile, sarebbe necessario tenere in considerazione s
 
 \subsubsection{Sensori IoT}\label{subsub:deploy:real:iot}
 
-Per la realizzazione del prototipo di questo progetto è stato utilizzato come sensore un modulo \texttt{Espressif Systems ESP8266}\footnote{Datasheet: \url{https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf}} fornito in un development kit chiamato \texttt{NodeMCU}.
+Per la realizzazione del prototipo di questo progetto è stato utilizzato come sensore un modulo \texttt{Espressif Systems ESP8266}\footnote{Datasheet ESP8266: \url{https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf}} fornito in un development kit chiamato \texttt{NodeMCU}.
 Tale PCB include un modulo \texttt{ESP-12};
 esso risulta adeguato per il caso di studio del prototipo, ma risulta lento nella scansione delle frequenze e le performance potrebbero peggiorare in ambienti più affollati.
 
-Per la versione finale, l'impiego di un modulo \texttt{ESP-32} del medesimo produttore vanta un processore più veloce, un miglior ricevitore WiFi e il supporto al Bluetooth:
+Per la versione finale, l'impiego di un modulo \texttt{ESP-32}\footnote{Datasheet ESP32: \url{https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf}}
+del medesimo produttore vanta un processore più veloce, un miglior ricevitore WiFi e il supporto al Bluetooth:
 \begin{itemize}
   \item
     il maggior clock e il miglior ricevitore potrebbero permettere una scansione più veloce;
@@ -36,7 +37,8 @@ Per aumentare ulteriormente la velocità di scansione, si potrebbero inserire un
 \subsubsection{Connessione tra edge e cloud}
 
 Il server edge implementato su \texttt{Raspberry Pi 3B} dipende molto dalla comunicazione con il cloud;
-potrebbe essere utile collegare una scheda di rete LTE/4G/3G per fornire una connessione di rete di backup.
+potrebbe essere utile collegare una scheda di rete LTE/4G/3G\improvement{Inserisci link al sito del produttore di un esempio di scheda di questo tipo, anche una chiavetta USB-3G ad esempio}
+per fornire una connessione di rete di backup.
 Inoltre, l'aggiunta di un DB locale potrebbe permettere un caching dei dati in caso di caduta della connessione fino alla risoluzione del problema.
 
 \subsection{Deploy su larga scala}
