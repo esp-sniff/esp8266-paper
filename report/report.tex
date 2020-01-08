@@ -93,6 +93,16 @@
 \addbibresource{biblio.bib}
 \usepackage[titletoc,title]{appendix}
 
+\usepackage{scrumbacklogcard}
+
+% \begin{backlogcard}
+%   {Create log in screen} % User story title
+%   {As a user I want to be able to log in.} % User story description
+%   {Add user in SQL} % Additional comment
+%   {100} % Importance
+%   {100h} % Time estimate
+% \end{backlogcard}
+
 \usepackage{xurl}
 \usepackage{microtype}
 
@@ -192,18 +202,13 @@
 %----------------------------------------------------------------------------------------
 %	APPENDICE
 %----------------------------------------------------------------------------------------
-
 \input{src/11-appendix.tex}
+
 \newpage
 
 %----------------------------------------------------------------------------------------
 %	RIFERIMENTI BIBLIOGRAFICI
 %----------------------------------------------------------------------------------------
-% \addcontentsline{toc}{section}{Riferimenti bibliografici}
-% \begin{thebibliography}
-% EElencare i riferimenti bibliografici citati nel testo.
-% \end{thebibliography}
-\nocite{*}            % aggiunge tutti i riferimenti nel .bib (anche non citati)
 \printbibliography[%  % produce la bibliografia
   heading=bibintoc    % inserisce il titolo nell'indice generale
 ]

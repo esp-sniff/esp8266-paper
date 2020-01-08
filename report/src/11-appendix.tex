@@ -1,8 +1,44 @@
 \appendix
+
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thesubsection}{A.\arabic{subsection}}
+
 \addcontentsline{toc}{section}{Appendice}
 \section*{Appendice}
-Laddove necessario è possibile avvalersi di appendici alla relazione per includere materiale di approfondimento.\\
 
-A titolo esemplificativo possono essere incluse le schede tecniche dei componenti adottati, la normativa di riferimento che regola un particolare dominio applicativo, ecc.
+% Laddove necessario è possibile avvalersi di appendici alla relazione per includere materiale di approfondimento.\\
 
-\todo[inline]{Spiegare come configurare il Raspberry Pi per far andare il wifi, come qui: \url{https://github.com/NiccoMlt/ISS-2018-Final-Task/blob/master/report/src/appendice.tex}} % TODO
+% A titolo esemplificativo possono essere incluse le schede tecniche dei componenti adottati, la normativa di riferimento che regola un particolare dominio applicativo, ecc.
+
+\subsection{Configurazione del Raspberry Pi}\label{app:raspi}
+
+Si è scelto di utilizzare un modulo WiFi USB in aggiunta a quello integrato nel Raspberry Pi 3,
+ma è possibile utilizzare il solo modulo WiFi integrato sia come access point che come client, pur con maggiori instabilità e minori velocità.
+
+La procedura di adattamento dell'immagine è stata documentata in modo da poter essere riproducibile in futuro.
+
+\begin{enumerate}
+  \item
+    La base dell'immagine è l'ultima versione di \textbf{Raspbian} nella sua versione minimale \textbf{lite}:
+    in questo caso, la versione Buster del 26 settembre 2019.
+
+    Dopo l'installazione, sono stati aggiornati i pacchetti tramite \texttt{apt} via rete WiFi;
+  \item
+    seguendo la documentazione fornita sul sito ufficiale\footnote{\url{https://raspap.com/}},
+    è stato installato \textbf{RaspAP} e configurato per funzionare esclusivamente via WiFi:
+    \begin{enumerate}
+      \item
+        \texttt{curl -sL https://install.raspap.com | bash} permette di installare RaspAP\@;
+      \item
+        seguendo le FAQ\footnote{\url{https://github.com/billz/raspap-webgui/wiki/FAQs\#can-i-use-wlan0-and-wlan1-rather-than-eth0-for-my-ap}}
+        al file \texttt{includes/config.php} si è aggiunta \texttt{wlan1} come client interface e si è impostato nel file \texttt{/etc/dhcpcd.conf}
+        \texttt{wlan0} come access point
+    \end{enumerate}
+    In questo modo, il dispositivo dovrebbe essere in grado di collegarsi alla rete WiFi pre-configurata e mettere a disposizione una rete con SSID ``raspi-webgui''.
+  \item
+    utilizzando lo script ufficiale\footnote{\url{https://github.com/docker/docker-install}} si è installato Docker;
+  \item
+    si è installato Java 1.8 tramite pacchetto \texttt{openjdk-8-jdk-headless};
+  \item
+    il broker MQTT Mosquitto viene eseguito tramite container Docker \texttt{eclipse-mosquitto}.
+\end{enumerate}
