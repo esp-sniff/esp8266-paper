@@ -4,10 +4,10 @@
 % !TeX program = arara
 % !TeX options = --log --verbose --language=it "%DOC%"
 
-% arara: lualatex:      { interaction: batchmode }
+% arara: lualatex:      { interaction: batchmode, shell: yes }
 % arara: biber
-% arara: lualatex:      { interaction: batchmode }
-% arara: lualatex:      { interaction: nonstopmode, synctex: yes }
+% arara: lualatex:      { interaction: batchmode, shell: yes }
+% arara: lualatex:      { interaction: nonstopmode, synctex: yes, shell: yes }
 
 \documentclass[12pt]{article}
 
@@ -94,6 +94,7 @@
 \usepackage[titletoc,title]{appendix}
 
 \usepackage{scrumbacklogcard}
+\usepackage{minted}
 
 % \begin{backlogcard}
 %   {Create log in screen} % User story title
