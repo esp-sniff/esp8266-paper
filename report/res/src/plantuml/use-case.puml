@@ -1,6 +1,6 @@
 @startuml use-case
 
-' Use cases of a WiFi crowd sensor system
+title: Use cases of a WiFi crowd sensor system
 
 ' actor :User: as user
 

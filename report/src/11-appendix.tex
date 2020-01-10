@@ -44,7 +44,7 @@ La procedura di adattamento dell'immagine è stata documentata in modo da poter 
     il broker MQTT Mosquitto viene eseguito tramite container Docker \texttt{eclipse-mosquitto}.
 \end{enumerate}
 
-\subsection{Procedura di deploy su Google App Engin in \emph{flexible environment}}\label{app:gcp}
+\subsection{Procedura di deploy su Google App Engine in \emph{flexible environment}}\label{app:gcp}
 
 Come detto\improvement{Inserire riferimento alla sezione corretta}, % TODO
 il progetto si appoggia all'ambiente App Engine della Google Cloud Platform per l'hosting del backend cloud.
@@ -67,6 +67,21 @@ Di seguito è riportata la procedura per effettuare il deploy tramite interfacci
         Il file \texttt{app.yaml} è la configurazione che definisce l'ambiente di esecuzione.
         \inputminted[fontsize=\footnotesize,frame=lines,linenos]{yaml}{../cloud-backend/app.yaml}
         Si è scelto di utilizzare il \emph{flexible environment} con \emph{runtime} Docker.
+      \item Il file \texttt{keyfile.json}, non tracciato, contiene le credenziali per l'accesso al database.
+      \begin{minted}[autogobble,fontsize=\footnotesize,frame=lines,linenos]{json}
+        {
+          "type": "service_account",
+          "project_id": "wifi-crowd-sensor-system",
+          "private_key_id": "<ID della chiave privata>",
+          "private_key": "<chiave privata>",
+          "client_email": "<email account di servizio>",
+          "client_id": "<ID del client>",
+          "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+          "token_uri": "https://oauth2.googleapis.com/token",
+          "auth_provider_x509_cert_url": "<Provider x509 di Google>",
+          "client_x509_cert_url": "<URL ai certificati x509>"
+        }
+      \end{minted}
       \item
         Il \texttt{Dockerfile} definisce una \emph{runtime} per eseguire \texttt{verticle} di Vert.x.
         \inputminted[fontsize=\footnotesize,frame=lines,linenos]{dockerfile}{../cloud-backend/Dockerfile}
