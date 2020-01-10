@@ -7,15 +7,44 @@ Deve essere inoltre esposto il piano di lavoro adottato. A tal fine, per ogni at
 
 Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nelle immagini, schemi):
 
-\vspace{1cm}
-\begin{tabular}{l|rr}
- & Numero minimo di battute & Numero massimo di battute \\
- \hline
- 1 componente & 1000 & 2000 \\
- 2 componenti & 1500 & 3000 \\
- 3 componenti & 2000 & 4000 \\
- \hline
-\end{tabular}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+  \begin{tabular}{|c|l|l|c|}
+  \hline
+  \rowcolor[HTML]{CBCEFB}
+  \textbf{Priority} & \multicolumn{1}{c|}{\cellcolor[HTML]{CBCEFB}\textbf{Type}} & \multicolumn{1}{c|}{\cellcolor[HTML]{CBCEFB}\textbf{Title}} & \textbf{Estimate Time} \\ \hline
+  1 & Setup & Repository Setup & 1 \\ \hline
+  \rowcolor[HTML]{DAE8FC}
+  2 & Setup & Project Setup & 2 \\ \hline
+  3 & Investigation & Crowd Tracking state of art investigation & 3 \\ \hline
+  \rowcolor[HTML]{DAE8FC}
+  4 & Investigation & ESP sensor technology state of art investigation & 3 \\ \hline
+  5 & Investigation & Best Cloud Platform choice & 1 \\ \hline
+  \rowcolor[HTML]{DAE8FC}
+  6 & Setup & Raspberry Access Point mode configuration & 2 \\ \hline
+  7 & Setup & Docker Host installation on Raspberry & 1 \\ \hline
+  \rowcolor[HTML]{DAE8FC}
+  8 & Setup & Execute Mosquitto on Docker container & 1 \\ \hline
+  9 & Setup & Configure a simple container with Vert.x Java & 1 \\ \hline
+  \rowcolor[HTML]{DAE8FC}
+  10 & Setup & Configure Google Cloud Platform & 2 \\ \hline
+  11 & Setup & Configure ESP8266 & 1 \\ \hline
+  \rowcolor[HTML]{DAE8FC}
+  12 & Implementation & ESP8266 code library adaptation & 4 \\ \hline
+  13 & Implementation & MQTT publish/subsribe interface implementation & 4 \\ \hline
+  \rowcolor[HTML]{DAE8FC}
+  14 & Implementation & Cloud FireStore Database interface implementation & 10 \\ \hline
+  15 & Implementation & API Edge implementation & 6 \\ \hline
+  \rowcolor[HTML]{DAE8FC}
+  16 & Implementation & API Cloud implementation & 6 \\ \hline
+  17 & Implementation & Web GUI edge-side implementation & 15 \\ \hline
+  \rowcolor[HTML]{DAE8FC}
+  18 & Implementation & Web GUI cloud-side implementation & 20 \\ \hline
+  19 & Implementation & Final integration testings & 8 \\ \hline
+  \end{tabular}
+\end{table}
 
 \subsection{Niccolò Maltoni}
 
