@@ -8,9 +8,7 @@
 % Numero massimo di battute per 2 componenti: 8000
 
 Per questo progetto, l'obiettivo di massima è la realizzazione di un sistema impiegabile in un ambiente indoor di tipo universitario (in particolare, una biblioteca dotata di aule studio),
-monitorando il numero di persone stimato per stanza per tutto il periodo di funzionamento del sistema.
-
-\unsure{Dovremmo spiegare qua che usa il WiFi?} % TODO: spiegare che usa il WiFi
+monitorando il numero di persone stimato per stanza per tutto il periodo di funzionamento del sistema attraverso l'intercettazione di pacchetti WiFi.
 
 Un servizio di monitoraggio dell'affollamento di ambienti indoor consiste in una serie di sensori distribuiti nelle stanze dell'edificio che registrano le presenze;
 poiché si assume essere un luogo pubblico, il sistema deve poter monitorare l'ambiente senza dipendere dalla collaborazione attiva da parte dell'utente.
@@ -25,7 +23,7 @@ Infine, dai casi riportati in letteratura si può dedurre che il problema della 
 Per poter condurre un lavoro efficace, si è deciso in inziare dalla scelta di un ambiente reale e di effettuarne l'analisi, eventualmente con la collaborazione della struttura stessa.
 
 Come ambiente di riferimento, si è deciso di considerare la Biblioteca Centrale Roberto Ruffilli del Campus di Forlì.
-Esso è un ambiente indoor strutturato su due piani e \improvement{inserire numero reale di stanze} diverse stanze adibite ad aule studio. % TODO: inserire numero reale di stanze
+Esso è un ambiente indoor strutturato su due piani e 18 stanze adibite ad aule studio.
 
 Dialogando con il personale e con alcuni studenti, si è manifestato l'interesse ad un sistema semplice ed immediato in grado di dare visivamente informazioni sul numero di persone;
 sembra sia necessario che l'eventuale sistema non sia invasivo, né per quanto riguarda l'installazione dell'hardware, né per quanto riguarda l'eventuale software necessario per la sua fruizione.
@@ -106,7 +104,6 @@ In aggiunta ai requisiti elencati nella \Cref{subsec:req:func}, ne sono stati in
       \item[Efficienza]
         Il sistema deve riuscire a rispondere a tutte le richieste senza tralasciarne alcuna.
     \end{description}
-
   \item[Privacy]
     Anche considerando le problematiche legali segnalate nella \Cref{sec:state-of-art}, la corretta anonimizzazione dei dati deve essere presa in considerazione.
   \item[Sicurezza]

@@ -31,7 +31,7 @@ L'articolo fu ripreso da molti altri giornali e riviste e, nonostante Presence O
 L'idea dietro alla realizzazione di questo progetto è nata dalla visione di un video\footnote{\url{https://youtu.be/UeAKTjx_eKA}} del canale YouTube LiveOverflow, datato novembre 2018,
 nel quale veniva studiato il contenuto della SD di uno dei Raspberry Pi Zero che avevano attirato l'attenzione su Reddit dopo essere stati trovati nascosti in diversi punti di un college americano.
 
-Dopo una fase di reverse engineering (non rilevante ai fini di questo progetto), lo youtuber e la community sono riusciti a risalire alla compagnia \unsure{Dovremmo spostare link da footnote a bibliografia?} \textbf{Waitz}\footnote{\url{https://waitz.io/}}, % TODO: spostare link da footnote a bibliografia
+Dopo una fase di reverse engineering (non rilevante ai fini di questo progetto), lo youtuber e la community sono riusciti a risalire alla compagnia \textbf{Waitz}\footnote{\url{https://waitz.io/}},
 che poi si è scoperto essere stata assunta dall'Università per avere informazioni in tempo reale dell'affollamento delle aule studio dei rispettivi campus.
 Attualmente, Waitz lavora con le Università di San Diego e di Santa Barbara e il servizio è accessibile tramite app e portale web.
 
@@ -44,28 +44,11 @@ L'utilizzo di dispositivi per il monitoraggio della folla tramite WiFi è divenu
 In bibliografia sono riportati ulteriori articoli e ricerce in merito.
 \nocite{Cohan2013,Kalogianni2015,Scheuner2016,Musa2012}
 
-\todo[inline]{Dovremmo spiegare qua la roba extra linkata in bibliografia?} % TODO: spiegare
-
-% Di seguito sono riportati brevemente ulteriori esempi.
-
-% \begin{itemize}
-%   \item
-%     Forbes~\cite{Cohan2013} ha trattato della tecnologia Euclid utilizzata da Nordstrom per tracciare il movimento di individui all'interno dei propri negozi;
-%   \item
-%     basandosi su una ricerca canadese~\cite{Kalogianni2015}, un gruppo di un'Università olandese ha documentato la realizzazione una rete per il monitoraggio dei ritmi all'interno del campus della Delft University of Technology;
-%   \item
-%     una ricerca~\cite{Scheuner2016} simile alla precedente ha portato alla realizzazione di Probr, un sistema di analisi di una miriade di dati raccoglibili con questa tecnologia.
-% \end{itemize}
-
 Come messo più volte in evidenza (come ad esempio dal Washington Post~\cite{Fung2013}), queste tecniche rappresentano un problema per la privacy per il consumatore,
 tanto da mobilitare i produttori di smartphone verso meccanismi di randomizzazione dell'indirizzo MAC\@.
 
 Purtroppo, tali soluzioni non si sono rivelate particolarmente efficaci, in quanto facilmente aggirabili
 tramite confronto dei bit riservati al vendor con i registri dell'IEEE~\cite{Claburn2017} e/o forzando l'invio del MAC reale inviando un RTS frame ai client, ottenendo in risposta un CTS frame con l'indirizzo desiderato~\cite{Martin2017}.
 
-% (BleepingComputer\footnote{\url{https://www.bleepingcomputer.com/news/security/researchers-break-mac-address-randomization-and-track-100-percent-of-test-devices/}} riassume i risultati di una ricerca di cybersecurity~\cite{Martin_2017} in merito).
-
 Risulta importante, ai fini di questo progetto, essere a conoscenza dei requisiti di anonimizzazione imposti dalla legge;
 inoltre, è importante essere a conoscenza delle contromisure dei dispositivi e gestire gli indirizzi MAC randomizzati per evitare misurazioni errate
-
-\todo[inline]{Inserire stato dell'arte della rilevazione via WiFi} % TODO

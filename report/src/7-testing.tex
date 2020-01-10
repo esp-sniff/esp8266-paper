@@ -1,25 +1,36 @@
 \section{Testing e performance}
 
-Esporre lo stato di funzionamento effettivo del sistema progettato ad elaborato concluso. Per ciascuna delle funzionalità salienti devono essere tabellate e discusse le performance riscontrate mediante opportuni test eseguiti in fase di validazione del progetto.\\
+% Esporre lo stato di funzionamento effettivo del sistema progettato ad elaborato concluso.
+% Per ciascuna delle funzionalità salienti devono essere tabellate e discusse le performance riscontrate mediante opportuni test eseguiti in fase di validazione del progetto.
 
-I tempi di esecuzione/comunicazione devono essere accompagnati dalle caratteristiche dell'hardware sul quale è eseguito il software.\\
+% I tempi di esecuzione/comunicazione devono essere accompagnati dalle caratteristiche dell'hardware sul quale è eseguito il software.
 
-Qualora l'elaborato includa algoritmi innovativi, indicarne la complessità computazionale (avendo cura di esporre lo pseudo codice nella sezione \ref{sec:implementazione}).\\
+% Qualora l'elaborato includa algoritmi innovativi, indicarne la complessità computazionale (avendo cura di esporre lo pseudo codice nella sezione implementazione).
 
-
-Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nelle immagini, schemi):
-
-\vspace{1cm}
-\begin{tabular}{l|rr}
- & Numero minimo di battute & Numero massimo di battute \\
- \hline
- 1 componente & 2000 & 3000 \\
- 2 componenti & 2500 & 4500 \\
- 3 componenti & 3000 & 6000 \\
- \hline
-\end{tabular}
+% Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nelle immagini, schemi):
+% Numero minimo di battute per 2 componenti: 2500
+% Numero massimo di battute per 2 componenti: 4500
 
 \subsection{Testing durante lo sviluppo}
+
+Per quanto riguarda i piani di test, abbiamo deciso di adottare un approccio manuale:
+non potendo contare su particolari framework dedicati, abbiamo realizzato la maggior parte delle prove manualmente.
+
+\subsubsection[Backend]{Backend (Fog \& Cloud)}
+
+Parlando della parte relativa ai backend (sia Fog che Cloud)
+web, abbiamo realizzato un testing via Postman[22], strumento specifico per le
+API REST: ogni volta che una nuova API veniva aggiunta al sistema, questa veniva
+testata con tale strumento per verificare non solo che il server la esponesse corret-
+tamente, ma anche che la Buisness Logic a essa collegata corrispondesse a quanto
+pensato in fase di progettazione. Parlando delle componenti non relative al web
+invece, queste sono state testate mediante un approccio incrementale: ogni com-
+ponente è stato verificato nel proprio funzionamento prima di essere integrato con
+il resto del sistema, purtroppo molti di questi test hanno richiesto con figurazioni
+hardware e software non banali(ad esempio, per testare la comunicazione seriale
+tra Raspberry e Arduino si è reso necessario scrivere parecchio codice dedicato e
+impostare una specifica logica di ricezione e invio dei messaggi), di conseguenza
+tali test sono stati effettuati, ma non inclusi nella release finale degli elaborati.
 
 \subsection{Testing del sistema finale}
 

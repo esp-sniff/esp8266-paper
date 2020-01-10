@@ -16,8 +16,8 @@ si affronterà quindi prima la progettazione dell'architettura ad alto livello
 e in un secondo momentole effettive implementazioni e architetture di dettaglio.
 
 Il primo passo compiuto è stata la stesura del diagramma dei casi d'uso, riportato in \Vref{fig:use-cases},
-\unsure{Sarà una ripetizione con quanto dico dopo?}
-fondamentale per inquadrare correttamente le funzionalità da realizzare sulla base dei requisiti.
+fondamentale per inquadrare correttamente le funzionalità da realizzare sulla base dei requisiti;
+successivamente si è passati alla progettazione di ciascun elemento dell'architattura.
 
 \subsection{Architettura generale del sistema}
 
@@ -115,7 +115,33 @@ In \Cref{fig:measure} è riportato tramite diagramma UML di sequenza una rappres
 
 \subsection{Cloud e Database}
 
-\todo[inline]{Aggiungere motivazioni della scelta del cloud}
+Se nei passi di progettazione precedenti si è parlato solo genericamente di ``cloud'', è importante chiarire quale piattaforma è stata scelta:
+infatti, differenti piattaforme possono offrire API che possono prestarsi o meno alle scelte architatturali anche di alto livello.
+Nondimeno, per ottimizzare i costi conviene scegliere un database del medesimo provider, e anche in questo caso le differenze possono essere notevoli.
+
+Tra i provider principali, la scelta è ricaduta sulla \strong{Google Cloud Platform}\footnote{\url{https://cloud.google.com/}}:
+essa mette a disposizione un elevato numero di strumenti diversi, avendo quasi sempre il servizio adatto per il caso d'uso in questione.
+
+Nel caso di questo progetto, l'ambiente di \strong{Google App Engine}, grazie al \emph{flex environment}, non pone limiti sull'architettura del codice in hosting, in quanto permette di appoggiarsi a immagini Docker\footnote{\url{https://www.docker.com/}} liberamente specificabili.
+
+Spostando dunque l'attenzione alla componente database, la piattaforma mette a disposizione diverse scelte:
+\emph{Cloud Spanner}, {Cloud SQL}, {Cloud Bigtable}, {Cloud Firestore}, {Firebase Realtime Database}, {Cloud Memorystore}.
+
+Di questi, quelli che venivano proposti come adatti al dominio in questione sono i seguenti:
+
+\begin{description}
+  \item[Cloud SQL\footnotemark]\footnotetext{\url{https://cloud.google.com/sql}}
+    Esso si pone come l'unica soluzione relazione tra quelli adottabili;
+    offre tutte le proprietà tipiche dei DB SQL, ma richiede di appoggiarsi a un container \emph{Compute Engine} o \emph{Kubernetes Engine}, altre soluzioni a pagamento che si preferisce evitare per quanto possibile.
+  \item[Firebase Realtime Database\footnotemark]\footnotetext{\url{https://firebase.google.com/products/realtime-database}}
+    Esso è stato fino a poco tempo fa la soluzione ``standard'' per lo sviluppo di applicazioni Android tramite Firebase;
+    il database (NoSQL documentale) è venduto come fortemente orientato al realtime e potrebbe essere indicato per gli utilizzi di questo progetto, ma l'SDK molto limitante al di fuori delle applicazioni mobile ce lo ha fatto evitare.
+  \item[Cloud Firestore\footnotemark]\footnotetext{\url{https://cloud.google.com/firestore}}
+    Esso è il database nato diversi anni dopo l'aquisizione di Firebase da parte di Google e vuole essere un ``upgrade'' del Firebase Realtime Database, dal quale eredita la natura NoSQL documentale e l'orientamento al realtime, ma ne migliora l'SDK e l'integrazione con le diverse piattaforme.
+\end{description}
+
+La soluzione scelta, come è possibile dedurre dall'elenco descrittivo sopra riportato, è il \strong{Cloud Firestore}.
+Esso è in grado di garantire transazioni ACID mentre gestisce autonomamente i permessi di accesso, la replicazione e la notifica di \emph{osservatori} in realtime.
 
 \subsection{Hardware necessario}
 
@@ -123,7 +149,7 @@ Per quanto riguarda le componenti hardware, come da requisiti il sistema non ha 
 
 Infatti, per rendere il sistema \emph{environment-aware} sono sufficienti i sensori WiFi (in questo prototipo, uno solo) disposti nell'ambiente.
 Essi devono essere in grado di configurare il proprio modulo di ricezione WiFi in ``modalità promiscua'',
-in modo da essere in grado di intercettare i pacchetti \emph{probe request} IEEE802.11 inviati periodicamente dai dispositivi che tentano di riconnettersi a reti WiFi salvate.
+in modo da essere in grado di intercettare i pacchetti \emph{probe request} IEEE 802.11 inviati periodicamente dai dispositivi che tentano di riconnettersi a reti WiFi salvate.
 Tali pacchetti contengono, tra le altre cose, l'SSID desiderato, il valore RSSI e l'indirizzo MAC \emph{in chiaro};
 quest'ultimo è proprio l'oggetto di interesse della ricerca che deve essere intercettato.
 Per un monitoraggio corretto, è necessario che tutti i canali previsti dal protocollo WiFi (e supportati dal sensore) vengano analizzati.
