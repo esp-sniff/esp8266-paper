@@ -113,4 +113,20 @@ In \Cref{fig:measure} è riportato tramite diagramma UML di sequenza una rappres
   \label{fig:measure}
 \end{figure}
 
+\subsection{Cloud e Database}
+
+\todo[inline]{Aggiungere motivazioni della scelta del cloud}
+
 \subsection{Hardware necessario}
+
+Per quanto riguarda le componenti hardware, come da requisiti il sistema non ha una complessità elevata.
+
+Infatti, per rendere il sistema \emph{environment-aware} sono sufficienti i sensori WiFi (in questo prototipo, uno solo) disposti nell'ambiente.
+Essi devono essere in grado di configurare il proprio modulo di ricezione WiFi in ``modalità promiscua'',
+in modo da essere in grado di intercettare i pacchetti \emph{probe request} IEEE802.11 inviati periodicamente dai dispositivi che tentano di riconnettersi a reti WiFi salvate.
+Tali pacchetti contengono, tra le altre cose, l'SSID desiderato, il valore RSSI e l'indirizzo MAC \emph{in chiaro};
+quest'ultimo è proprio l'oggetto di interesse della ricerca che deve essere intercettato.
+Per un monitoraggio corretto, è necessario che tutti i canali previsti dal protocollo WiFi (e supportati dal sensore) vengano analizzati.
+
+Essendo i sensori dotati di WiFi, non è necessaria una connessione differente per comunicare i dati,
+bensì è sufficiente che il Fog server agisca da hotspot affinché il sensore vi si possa collegare per trasferire i dati raccolti ad ogni ciclo.
