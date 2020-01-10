@@ -1,4 +1,4 @@
-\section{Progettazione}
+\section{Progettazione}\label{sec:project}
 
 % Devono essere esposte le scelte progettuali operate nelle varie fasi di sviluppo dell'elaborato.
 
@@ -10,7 +10,7 @@
 % Numero minimo di battute per 2 componenti: 12000
 % Numero massimo di battute per 2 componenti: 21000
 
-In questa sezione viene presentata l'architettura generale del sistema,
+In questa \nameCref{sec:project} viene presentata l'architettura generale del sistema,
 partendo da come è stata derivata a partire dai requisiti raccolti, seguendo un approccio top-down:
 si affronterà quindi prima la progettazione dell'architettura ad alto livello
 e in un secondo momentole effettive implementazioni e architetture di dettaglio.
@@ -68,15 +68,49 @@ Definita dunque questa architettura di massima, si è delineato le entità princ
     \end{itemize}
 \end{description}
 
-In \Cref{fig:architecture} è riassunto graficamente quanto descirtto sopra.
+In \Cref{fig:architecture} è riassunto graficamente quanto descirtto sopra, oltre alle interazioni che verranno analizzate nella \nameCref{subsec:interaction} successiva.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{res/out/architecture.eps}
-  \caption{Diagramma che riassme le componenti di massima dell'architettura del sistema}%
+  \includegraphics[width=0.7\textwidth]{res/out/architecture.eps}
+  \caption{Componenti di massima dell'architettura e le loro interazioni}%
   \label{fig:architecture}
 \end{figure}
 
-\subsection{Interazioni tra gli elementi del sistema}
+\subsection{Interazioni tra gli elementi del sistema}\label{subsec:interaction}
+
+Una volta individuate le entità fondamentali, il passo successivo è stato modellare le interazioni tra le componenti in gioco nel sistema.
+
+Sulla base di quanto rappresentato nelle \Cref{fig:use-cases,fig:architecture}, sono stati analizzati i singoli scambi di informazioni tra le entità, analizzati come segue:
+
+\begin{itemize}
+  \item
+    Per quanto riguarda la comunicazione tra il sensore e il Fog server, era necessario un protocollo di comunicazione leggero, veloce e non bloccante;
+    per questi motivi, si è preferito un protocollo \emph{publish/subscribe} come MQTT~\cite{ISOCS2016}, che risulta perfetto per questi tipi di comunicazioni nell'ambito IoT.
+
+    Per un corretto funzionamento, sarà necessario un \emph{MQTT broker} accessibile ad entrambi il Fog server e il sensore.
+    Per quanto sia manualmente implementabile, si preferisce eseguire un software dedicato e indipendente;
+    considerando eccessivo aggiungere un'altra macchina alla rete locale dedicata solo a questo scopo, il broker scelto verrà installato localmente al Fog server.
+
+    In questo modo, il sensore può collegarsi al server tramite WiFi, sottoscriversi al broker come \emph{publisher}, pubblicare i dati raccolti e disconnettersi per riprendere il loop,
+    mentre il backend, sottoscritto come \emph{subscriber}, si occupa di gestire quanto pubblicato.
+
+    Si è scelto di esporre comunque API HTTP REST~\cite{Fielding2000}, che verranno utilizzate in modo asincrono dallo stesso Fog server e che permettono una espandibilità futura.
+  \item
+    Per quanto riguarda la comunicazione tra il Fog server e il backend in Cloud, si è ritenuto maggiormente indicato l'impiego di API REST\@.
+    L'applicativo in esecuzione in cloud deve gestire le chiamate alle risorse, agendo sul database in modo asincrono e rispondendo di conseguenza.
+  \item
+    Per quanto riguarda le interfacce web, si è ritenuto ragionevole che il software di backend (sia Fog che Cloud) che gestisce le API possa anche servire tali pagine;
+    esse, realizzate come \emph{Single Page Application}, sono in grado di risolvere le informazioni di cui hanno bisogno tramite chiamate HTTP alle API REST esposte dai rispettivi backend.
+\end{itemize}
+
+In \Cref{fig:measure} è riportato tramite diagramma UML di sequenza una rappresentazione con maggior dettaglio della procedura di registrazione di una misurazione.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{res/out/measure.eps}
+  \caption{Diagramma UML di sequenza del processo di registrazione di una misurazione}%
+  \label{fig:measure}
+\end{figure}
 
 \subsection{Hardware necessario}
