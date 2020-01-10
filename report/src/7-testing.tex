@@ -18,28 +18,54 @@ non potendo contare su particolari framework dedicati, abbiamo realizzato la mag
 
 \subsubsection[Backend]{Backend (Fog \& Cloud)}
 
-Parlando della parte relativa ai backend (sia Fog che Cloud)
-web, abbiamo realizzato un testing via Postman[22], strumento specifico per le
-API REST: ogni volta che una nuova API veniva aggiunta al sistema, questa veniva
-testata con tale strumento per verificare non solo che il server la esponesse corret-
-tamente, ma anche che la Buisness Logic a essa collegata corrispondesse a quanto
-pensato in fase di progettazione. Parlando delle componenti non relative al web
-invece, queste sono state testate mediante un approccio incrementale: ogni com-
-ponente è stato verificato nel proprio funzionamento prima di essere integrato con
-il resto del sistema, purtroppo molti di questi test hanno richiesto con figurazioni
-hardware e software non banali(ad esempio, per testare la comunicazione seriale
-tra Raspberry e Arduino si è reso necessario scrivere parecchio codice dedicato e
-impostare una specifica logica di ricezione e invio dei messaggi), di conseguenza
-tali test sono stati effettuati, ma non inclusi nella release finale degli elaborati.
+Per quanto riguarda entrambi i backend, le API REST sono state testate manualmente tramite Postman\footnote{\url{https://www.getpostman.com/}}, strumento specifico per questo tipo di operazioni:
+ogni volta che una nuova API veniva aggiunta al sistema, questa veniva
+testata con tale strumento per verificare non solo che il server la esponesse correttamente,
+ma anche che la Buisness Logic a essa collegata corrispondesse a quanto pensato in fase di progettazione.
+
+Anche la comunicazione con il database, realizzata dopo le API, è stata testa tramite Postman, verificando dalla Firebase Cloud Console che le pubblicazioni sul DB fossero corrette.
+
+Infine la comunicazione con MQTT, realizzata anch'essa dopo le API, è stata testata pubblicando tramite MQTT Explorer\footnote{\url{http://mqtt-explorer.com/}} rilevazioni fittizie e verificando che l'esecuzione andasse a buon fine tramite API e log.
+
+\subsubsection{Sensori IoT}
+
+Il codice eseguito su ESP8266 è stato anch'esso realizzato con approccio incrementale, verificando prima tramite comunicazione seriale che le rilevazioni fossero corrette, e poi via MQTT Explorer che venissero pubblicate come da aspettative.
 
 \subsection{Testing del sistema finale}
+
+Una volta giunti a termine dello sviluppo, si è reso necessario testare il sistema in ogni sua funzionalità.
+
+Il sistema è stato dunque posizionato in una stanza della Biblioteca Centrale Roberto Ruffilli del Campus di Forlì per alcune ore, monitorando le rilevazioni tramite entrambe le interfacce web.
 
 \subsubsection{Hardware utilizzato}
 
 Per quanto riguarda l'hardware impiegato per il testing, sono state utilizzate le seguenti risorse:
 
 \begin{itemize}
-  \item \textbf{Raspberry Pi 3 Model B} come edge server\todo[inline]{continua} % TODO
+  \item
+    \strong{Raspberry Pi 3 Model B} come Fog server;
+    un ricevitore USB WiFi è stato collegato per poter gestire con stabilità sia la connessione \emph{upstream} ad AlmaWiFi che l'hotspot per il sensore.
+    Il dispositivo è stato alimentato tramite una batteria al litio da 3700mAh.
+  \item \strong{NodeMCU ESP8266} come sensore IoT, alimentato tramite un powerbank da 3350mAh.
 \end{itemize}
 
 \subsubsection{Performance ottenute}
+
+In questa sezione è presente una breve trattazione delle perfomance riscontrate durante il testing delle principali feature del prototipo finale:
+
+\begin{description}
+  \item[Avvio del sistema]
+    Considerando i differenti sistemi:
+    \begin{itemize}
+      \item Il Raspberry Pi impiega generalmente circa due minuti ad avviarsi e il broker MQTT viene messo in esecuzione in pochi secondi.
+      \item Il container Docker che mette in esecuzione il jar generalmente si avvia in una decina di secondi al massimo.
+      \item Il sensore su ESP8266 si avvia in pochi secondi.
+    \end{itemize}
+  \item[Scansione delle frequenze]
+    L'ESP8266 impiega in media circa 5 minuti per effettuare la scansione di tutte le 14 frequenze del WiFi supportate.
+  \item[Pubblicazione su MQTT]
+    L'ESP8266 impiega 5--10 secondi a collegarsi alla rete WiFi ed effettuare la pubblicazione.
+  \item[Gestione delle API]
+    Il Raspberry Pi e il Cloud impiegano tempi molto simili per gestire le singole chiamate API\@:
+    in media, sono necessari 5--10 secondi per ottenere una risposta se è coinvolto il database, altrimenti anche meno di 5 secondi.
+\end{description}
