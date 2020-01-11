@@ -4,6 +4,15 @@ In questa sezione verranno trattati gli aspetti inerenti all'implementazione har
 in primo luogo saranno velocemente presentate le tecnologie utilizzate all'interno di una o più delle entità in gioco nel sistema,
 successivamente verrà dedicata una \nameCref{subsec:cloud} a ciascuna di queste dove saranno analizzate nello specifico l'architettura e le funzionalità di dettaglio.
 
+La configurazione di rete finale è riportata in \Cref{fig:network}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{res/out/network.pdf}
+  \caption{Rappresentazione della configurazione di rete finale realizzata}%
+  \label{fig:network}
+\end{figure}
+
 \subsection{Tecnologie Utilizzate}
 
 Di seguito sono riportate in un elenco le tecnologie più rilevanti utilizzate per l'implementazione del progetto.
@@ -39,7 +48,7 @@ La logica implementativa è molto semplice e vede un singolo \text{Verticle} (mo
 Come già specificato in precedenza, il deploy è effettuato su Google App Engine tramite container Docker;
 la procedura è documentata in \Cref{app:gcp}.
 
-\subsubsection{OpenAPI}
+\subsubsection{OpenAPI}\label{subsub:openapi}
 
 Le API sono documentate tramite standard Swagger/OpenAPI 3.0~\cite{OpenAPIInitiative2018}, il cui documento può essere trovato in \Cref{app:openapi:cloud};
 tale documentazione è letta da Vert.x, il quale associa ad ogni \emph{route} un \emph{handler} asincrono specifico.
@@ -119,9 +128,37 @@ L'interfaccia web per la parte Cloud consiste in una rappresentazione dei dati a
 Il grafico a linee rappresenta l'andamento nel tempo (nell'intervallo prestabilito di 2 ore) dell'affollamento rilevato per tutti i potenziali fog (ognuno rappresentato da una linea); sull'asse delle ascisse il tempo, su quello delle ordinate il quantitativo di dispositivi trovati.
 Il grafico a torta viene utilizzato per mostrare una statistica relativa ai vari vendor (ricavabili dal MAC address) di ogni dispositivo rilevato.
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{res/fig/cloud-chart.jpg}
+  \caption{Grafico a linee relativo all'affollamento delle diverse zone (qui solo una, \texttt{rpi1})}%
+  \label{fig:cloud-chart}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{res/fig/cloud-pie.jpg}
+  \caption{Grafico a torta rappresentante il rapporto di frequenza dei differenti vendor}%
+  \label{fig:cloud-pie}
+\end{figure}
+
 \subsubsection{Frontend Fog}
 
 L'interfaccia web per la parte Fog consiste in una rappresentazione tabellare dei dispositivi rilevati (comprendente vendor e un hash del MAC address per ogni dispositivo), un grafico a linee concettualmente simile a quello sviluppato nel frontend cloud ed un contatore del totale dei dispositivi trovati.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{res/fig/fog-chart.jpg}
+  \caption{Grafico a linee relativo all'affollamento della zona locale al Fog server}%
+  \label{fig:fog-chart}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{res/fig/fog-table.jpg}
+  \caption{Lista dei differenti vendori rilevati con l'ultima misurazione}%
+  \label{fig:fog-table}
+\end{figure}
 
 \subsection{Sensori IoT}
 

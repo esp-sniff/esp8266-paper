@@ -27,6 +27,10 @@ Anche la comunicazione con il database, realizzata dopo le API, è stata testa t
 
 Infine la comunicazione con MQTT, realizzata anch'essa dopo le API, è stata testata pubblicando tramite MQTT Explorer\footnote{\url{http://mqtt-explorer.com/}} rilevazioni fittizie e verificando che l'esecuzione andasse a buon fine tramite API e log.
 
+\subsubsection[Frontend]{Frontend (Fog \& Cloud)}
+
+Il codice relativo al frontend web è stato anch'esso testato manualmente, sia tramite server \emph{mock} quando le API non erano ancora pronte, sia con le API reali qunado disponibili.
+
 \subsubsection{Sensori IoT}
 
 Il codice eseguito su ESP8266 è stato anch'esso realizzato con approccio incrementale, verificando prima tramite comunicazione seriale che le rilevazioni fossero corrette, e poi via MQTT Explorer che venissero pubblicate come da aspettative.
@@ -48,6 +52,23 @@ Per quanto riguarda l'hardware impiegato per il testing, sono state utilizzate l
     Il dispositivo è stato alimentato tramite una batteria al litio da 3700mAh.
   \item \strong{NodeMCU ESP8266} come sensore IoT, alimentato tramite un powerbank da 3350mAh.
 \end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[htbp]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{res/fig/esp.jpg}%
+    \label{subfig:esp}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[htbp]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{res/fig/rpi.jpg}%
+    \label{subfig:raspi}
+  \end{subfigure}
+  \caption{Fotografie del prototipo di sistema}%
+  \label{fig:hw}
+\end{figure}
 
 \subsubsection{Performance ottenute}
 
