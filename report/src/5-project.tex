@@ -13,11 +13,11 @@
 In questa \nameCref{sec:project} viene presentata l'architettura generale del sistema,
 partendo da come è stata derivata a partire dai requisiti raccolti, seguendo un approccio top-down:
 si affronterà quindi prima la progettazione dell'architettura ad alto livello
-e in un secondo momentole effettive implementazioni e architetture di dettaglio.
+e in un secondo momento le effettive implementazioni e architetture di dettaglio.
 
 Il primo passo compiuto è stata la stesura del diagramma dei casi d'uso, riportato in \Vref{fig:use-cases},
 fondamentale per inquadrare correttamente le funzionalità da realizzare sulla base dei requisiti;
-successivamente si è passati alla progettazione di ciascun elemento dell'architattura.
+successivamente si è passati alla progettazione di ciascun elemento dell'architettura.
 
 \subsection{Architettura generale del sistema}
 
@@ -59,7 +59,7 @@ Definita dunque questa architettura di massima, si è delineato le entità princ
     \begin{itemize}
       \item
         un servizio PaaS per l'hosting del codice di backend,
-        preferibilmente implementato nella medesima tecnologia scelta per il livello fog, al fine di massimizzare il riuso del codice.
+        preferibilmente implementato nella medesima tecnologia scelta per il livello Fog, al fine di massimizzare il riuso del codice.
       \item
         un servizio PaaS per l'hosting del codice di frontend web in grado di mostrare informazioni su tutti gli edifici monitorati (nel prototipo, uno solo).
       \item
@@ -68,7 +68,7 @@ Definita dunque questa architettura di massima, si è delineato le entità princ
     \end{itemize}
 \end{description}
 
-In \Cref{fig:architecture} è riassunto graficamente quanto descirtto sopra, oltre alle interazioni che verranno analizzate nella \nameCref{subsec:interaction} successiva.
+In \Cref{fig:architecture} è riassunto graficamente quanto descritto sopra, oltre alle interazioni che verranno analizzate nella \nameCref{subsec:interaction} successiva.
 
 \begin{figure}[H]
   \centering
@@ -116,7 +116,7 @@ In \Cref{fig:measure} è riportato tramite diagramma UML di sequenza una rappres
 \subsection{Cloud e Database}
 
 Se nei passi di progettazione precedenti si è parlato solo genericamente di ``cloud'', è importante chiarire quale piattaforma è stata scelta:
-infatti, differenti piattaforme possono offrire API che possono prestarsi o meno alle scelte architatturali anche di alto livello.
+infatti, differenti piattaforme possono offrire API che possono prestarsi o meno alle scelte architetturali anche di alto livello.
 Nondimeno, per ottimizzare i costi conviene scegliere un database del medesimo provider, e anche in questo caso le differenze possono essere notevoli.
 
 Tra i provider principali, la scelta è ricaduta sulla \strong{Google Cloud Platform}\footnote{\url{https://cloud.google.com/}}:
@@ -137,7 +137,7 @@ Di questi, quelli che venivano proposti come adatti al dominio in questione sono
     Esso è stato fino a poco tempo fa la soluzione ``standard'' per lo sviluppo di applicazioni Android tramite Firebase;
     il database (NoSQL documentale) è venduto come fortemente orientato al realtime e potrebbe essere indicato per gli utilizzi di questo progetto, ma l'SDK molto limitante al di fuori delle applicazioni mobile ce lo ha fatto evitare.
   \item[Cloud Firestore\footnotemark]\footnotetext{\url{https://cloud.google.com/firestore}}
-    Esso è il database nato diversi anni dopo l'aquisizione di Firebase da parte di Google e vuole essere un ``upgrade'' del Firebase Realtime Database, dal quale eredita la natura NoSQL documentale e l'orientamento al realtime, ma ne migliora l'SDK e l'integrazione con le diverse piattaforme.
+    Esso è il database nato diversi anni dopo l'acquisizione di Firebase da parte di Google e vuole essere un ``upgrade'' del Firebase Realtime Database, dal quale eredita la natura NoSQL documentale e l'orientamento al realtime, ma ne migliora l'SDK e l'integrazione con le diverse piattaforme.
 \end{description}
 
 La soluzione scelta, come è possibile dedurre dall'elenco descrittivo sopra riportato, è il \strong{Cloud Firestore}.

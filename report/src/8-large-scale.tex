@@ -34,9 +34,9 @@ del medesimo produttore vanta un processore più veloce, un miglior ricevitore W
 
 Per aumentare ulteriormente la velocità di scansione, si potrebbero inserire un maggior numero di moduli per stanza, ciascuno impiegato solo per la scansione di un sottoinsieme delle frequenze WiFi.
 
-\subsubsection{Connessione tra edge e cloud}
+\subsubsection{Connessione tra Fog e cloud}
 
-Il server edge implementato su \texttt{Raspberry Pi 3B} dipende molto dalla comunicazione con il cloud;
+Il server Fog implementato su \texttt{Raspberry Pi 3B} dipende molto dalla comunicazione con il cloud;
 potrebbe essere utile collegare una scheda di rete LTE/4G/3G per fornire una connessione di rete di backup.
 Inoltre, l'aggiunta di un DB locale potrebbe permettere un caching dei dati in caso di caduta della connessione fino alla risoluzione del problema.
 
@@ -53,7 +53,7 @@ Partendo dal client web, pensando ad un numero di utenti elevato i problemi prin
     grazie a questa tecnologia, la gestione del routing, dell'ottenimento dei dati e della rappresentazione di questi ultimi è gestita client-side,
     rendendo i compiti del web server meno onerosi.
 
-    Il server web locale potrebbe effettivamente essere limitato dalla velocità delle schede di rete del Raspoberry Pi 3B,
+    Il server web locale potrebbe effettivamente essere limitato dalla velocità delle schede di rete del Raspberry Pi 3B,
     il quale deve comunicare con il cloud per risolvere i dati dal database.
     L'interfaccia web dispiegata in cloud non dovrebbe essere limitata dalle risorse attualmente fornite, ma esse possono comunque essere estese \emph{on demand} in caso di necessità.
 
@@ -61,18 +61,18 @@ Partendo dal client web, pensando ad un numero di utenti elevato i problemi prin
     Come accennato nel punto precedente, il database è acceduto spesso, dunque potrebbe essere necessario l'upgrade a un piano premium (\emph{Flame} o \emph{Blaze}) per poter gestire le richieste.
 \end{description}
 
-Inoltre, il sistema molto probabilmente vedrebbe un aumento della quantità di server edge e sensori.
+Inoltre, il sistema molto probabilmente vedrebbe un aumento della quantità di server Fog e sensori.
 Infatti, come già detto nei punti precedenti, il poter aggiungere e rimuovere stanze ed edifici in modo semplice è una caratteristica del sistema.
 
 Nonostante ciò sia dunque previsto, si potrebbero presentare alcune problematiche da gestire:
 \begin{description}
-  \item[Aumento del numero di sensori rispetto ai server edge]
-    Per quanto molto difficile per motivi di copertura del segnale WiFi, è possibile che vi sia un elevato numero di sensori connessi al medesimo server edge che gestisce l'edificio.
+  \item[Aumento del numero di sensori rispetto ai server Fog]
+    Per quanto molto difficile per motivi di copertura del segnale WiFi, è possibile che vi sia un elevato numero di sensori connessi al medesimo server Fog che gestisce l'edificio.
     Poiché nel prototipo attuale ciascun ESP8266 si collega tramite WiFi alla rete locale generata dal Raspberry Pi usando una \texttt{netmask} di \texttt{255.255.255.0}, il numero di IP assegnabili è 255.
 
-    Nel caso si decida di aggiungere più sensori per stanza, come ipotizzato nell \Cref{subsub:deploy:real:iot}, questo aspetto potrebbe dover essere tenuto in considerazione.
-  \item[Aggiunta di server edge]
-    Come specificato nella \Cref{subsub:openapi}, la comunicazione tra cloud ed edge è autenticata tramite token JWT\@.
+    Nel caso si decida di aggiungere più sensori per stanza, come ipotizzato nella \Cref{subsub:deploy:real:iot}, questo aspetto potrebbe dover essere tenuto in considerazione.
+  \item[Aggiunta di server Fog]
+    Come specificato nella \Cref{subsub:openapi}, la comunicazione tra cloud ed Fog è autenticata tramite token JWT\@.
     L'API cloud che lo genera richiede a sua volta un'autenticazione tramite nome zona e chiave, che devono essere configurate tramite file di configurazione secondo le best practice di Vert.x.
 \end{description}
 

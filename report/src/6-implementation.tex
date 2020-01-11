@@ -19,7 +19,7 @@ Di seguito sono riportate in un elenco le tecnologie più rilevanti utilizzate p
 
 \begin{description}
   \item[Typescript \& Angular]
-    Per la realizzazione dei frontend web del server cloud e del server edge, è stato impiegato il framework Angular con il linguaggio consigliato Typescript.
+    Per la realizzazione dei frontend web del server cloud e del server Fog, è stato impiegato il framework Angular con il linguaggio consigliato Typescript.
     \strong{Typescript}\footnote{\url{https://www.typescriptlang.org/}} è un Super-set di JavaScript ES6 e, come tale, è un linguaggio di scripting orientato agli oggetti e agli eventi;
     \strong{Angular}\footnote{\url{https://angular.io/}}, invece, è un framework open source per lo sviluppo di applicazioni web con licenza MIT, realizzato in Typescript e sviluppato principalmente da Google.
     Tramite Angular è stato possibile realizzare SPA autonome reattive e leggere.
@@ -29,7 +29,7 @@ Di seguito sono riportate in un elenco le tecnologie più rilevanti utilizzate p
     Per memorizzare i dati raccolti è stato utilizzato \strong{Cloud Firestore}, un database flessibile e scalabile per lo sviluppo di dispositivi mobili, Web e server da Firebase e Google Cloud Platform.
   \item[Kotlin\footnotemark]\footnotetext{\url{https://kotlinlang.org/}}
     Per l'implementazione del server di backend e la gestione delle API è stato utilizzato \strong{Kotlin}, un linguaggio di programmazione general purpose, multi-paradigma (object-oriented e funzionale), open source sviluppato dall'azienda di software JetBrains e basato su JVM\@.
-  \item[Vertx\footnotemark]\footnotetext{\url{https://vertx.io/}}
+  \item[Vert.x\footnotemark]\footnotetext{\url{https://vertx.io/}}
     Libreria utilizzata all’interno dei componenti che si basano su una JVM, mette a disposizione una serie di primitive e strutture che non solo consentono di modellare un'architettura asincrona e basata sullo scambio di messaggi all'interno del singolo componente, ma permette una gestione semplice, veloce e immediata delle chiamate REST e dei messaggi su MQTT\@.
 
     Tra gli altri si è optato per Vert.x, oltre che per la sua struttura basata sugli eventi asincroni all’interno di un event-loop, per la sua semplicità di deploy.
@@ -61,7 +61,7 @@ Per semplicità, le API mettono a disposizione solo le operazioni di aggiunta (t
     Gli oggetti JSON scambiati contengono:
     \begin{itemize}
       \item un campo \texttt{hash-mac} contenente il risultato di una funzione hash eseguita sull'indirizzo MAC individuato;
-      \item un campo \texttt{vendor} contentente il nome del produttore risolto a partire dall'indirizzo MAC prima dell'anonimizzazione;
+      \item un campo \texttt{vendor} contenente il nome del produttore risolto a partire dall'indirizzo MAC prima dell'anonimizzazione;
     \end{itemize}
     È possibile specificare una location nel path per filtrare i risultati di un solo edificio; per eseguire le \texttt{PUT} essa è obbligatoria.
   \item
@@ -69,8 +69,8 @@ Per semplicità, le API mettono a disposizione solo le operazioni di aggiunta (t
     Gli oggetti JSON scambiati contengono:
     \begin{itemize}
       \item un campo \texttt{time} contenente il timestamp di quanto è stata effettuata la misurazione;
-      \item un campo \texttt{zone} contentente la location della misurazione;
-      \item un campo \texttt{crowd} contentente il numero di dispositivi rilevati;
+      \item un campo \texttt{zone} contenente la location della misurazione;
+      \item un campo \texttt{crowd} contenente il numero di dispositivi rilevati;
     \end{itemize}
     È possibile specificare una location nel path per filtrare i risultati di un solo edificio; per eseguire le \texttt{PUT} essa è obbligatoria.
 \end{itemize}
@@ -86,7 +86,7 @@ Oltre a queste, sono disponibili altre due API\@:
 
 \subsubsection{Cloud Firestore}
 
-La comunicazione tra il \texttt{Verticle} e il database è gestita tramite un libreria wrapper realizzata per Vert.x.
+La comunicazione tra il \texttt{Verticle} e il database è gestita tramite una libreria wrapper realizzata per Vert.x.
 Essa si interfaccia tramite SDK nativo e fornisce osservabili reattivi con cui interagire in modo asincrono.
 
 Per quanto riguarda la modellazione dei dati all'interno del DB, le collezioni sono definite in modo molto simile alle risorse REST\@.
@@ -94,7 +94,7 @@ Sono state realizzate le seguenti collezioni, con i documenti aventi la medesima
 
 \begin{itemize}
   \item \texttt{crowds} contenente tutte le misurazioni suddivise per zona;
-  \item \texttt{devices} contentente tutti i dispositivi rilevati;
+  \item \texttt{devices} contenente tutti i dispositivi rilevati;
   \item \texttt{located-devices} ospitante le informazioni relative ai dispositivi presenti in una certa zona.
 \end{itemize}
 
@@ -125,7 +125,7 @@ Si è proceduto principalmente per step successivi, cercando di realizzare inizi
 \subsubsection{Frontend Cloud}
 
 L'interfaccia web per la parte Cloud consiste in una rappresentazione dei dati attraverso due grafici, entrambi realizzati grazie alla libreria \texttt{Chart.js}: uno a linee ed uno a torta.
-Il grafico a linee rappresenta l'andamento nel tempo (nell'intervallo prestabilito di 2 ore) dell'affollamento rilevato per tutti i potenziali fog (ognuno rappresentato da una linea); sull'asse delle ascisse il tempo, su quello delle ordinate il quantitativo di dispositivi trovati.
+Il grafico a linee rappresenta l'andamento nel tempo (nell'intervallo prestabilito di 2 ore) dell'affollamento rilevato per tutti i potenziali Fog (ognuno rappresentato da una linea); sull'asse delle ascisse il tempo, su quello delle ordinate il quantitativo di dispositivi trovati.
 Il grafico a torta viene utilizzato per mostrare una statistica relativa ai vari vendor (ricavabili dal MAC address) di ogni dispositivo rilevato.
 
 \begin{figure}[H]
@@ -148,16 +148,16 @@ L'interfaccia web per la parte Fog consiste in una rappresentazione tabellare de
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{res/fig/fog-chart.jpg}
+  \includegraphics[width=\textwidth]{res/fig/Fog-chart.jpg}
   \caption{Grafico a linee relativo all'affollamento della zona locale al Fog server}%
-  \label{fig:fog-chart}
+  \label{fig:Fog-chart}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{res/fig/fog-table.jpg}
-  \caption{Lista dei differenti vendori rilevati con l'ultima misurazione}%
-  \label{fig:fog-table}
+  \includegraphics[width=\textwidth]{res/fig/Fog-table.jpg}
+  \caption{Lista dei differenti vendor rilevati con l'ultima misurazione}%
+  \label{fig:Fog-table}
 \end{figure}
 
 \subsection{Sensori IoT}

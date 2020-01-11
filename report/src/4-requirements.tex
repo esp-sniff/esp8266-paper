@@ -14,13 +14,13 @@ Un servizio di monitoraggio dell'affollamento di ambienti indoor consiste in una
 poiché si assume essere un luogo pubblico, il sistema deve poter monitorare l'ambiente senza dipendere dalla collaborazione attiva da parte dell'utente.
 
 Il servizio deve essere facilmente fruibile e non deve invasivo né per l'edificio né per l'infrastruttura di rete esistente.
-I sensori possono dunque essere più o meno complessi compatibilimente con le esigenze dell'ambiente di installazione.
+I sensori possono dunque essere più o meno complessi compatibilmente con le esigenze dell'ambiente di installazione.
 
 Infine, dai casi riportati in letteratura si può dedurre che il problema della privacy nella gestione dei dati è di fondamentale importanza e va considerato assolutamente.
 
 \subsection{Raccolta dei requisiti}
 
-Per poter condurre un lavoro efficace, si è deciso in inziare dalla scelta di un ambiente reale e di effettuarne l'analisi, eventualmente con la collaborazione della struttura stessa.
+Per poter condurre un lavoro efficace, si è deciso in iniziare dalla scelta di un ambiente reale e di effettuarne l'analisi, eventualmente con la collaborazione della struttura stessa.
 
 Come ambiente di riferimento, si è deciso di considerare la Biblioteca Centrale Roberto Ruffilli del Campus di Forlì.
 Esso è un ambiente indoor strutturato su due piani e 18 stanze adibite ad aule studio.
@@ -29,7 +29,7 @@ Dialogando con il personale e con alcuni studenti, si è manifestato l'interesse
 sembra sia necessario che l'eventuale sistema non sia invasivo, né per quanto riguarda l'installazione dell'hardware, né per quanto riguarda l'eventuale software necessario per la sua fruizione.
 Per quanto non sia fondamentale, il personale della libreria ha mostrato interesse verso la possibilità di avere alcuni statistici oltre al conteggio attuale, purché siano dati liberamente pubblicabili e nel pieno rispetto della privacy sui dati.
 
-\subsection{Requisti funzionali}\label{subsec:req:func}
+\subsection{Requisiti funzionali}\label{subsec:req:func}
 
 Dall'analisi delle informazioni raccolte, sono state identificate le seguenti entità che interagiscono per il corretto funzionamento del sistema:
 
@@ -53,7 +53,7 @@ Di seguito in \Cref{fig:use-cases} una rappresentazione tramite UML dei casi d'u
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{res/out/use-case.eps}
-  \caption{Diagramma UML che riassme i casi d'uso del sistema}%
+  \caption{Diagramma UML che riassume i casi d'uso del sistema}%
   \label{fig:use-cases}
 \end{figure}
 
@@ -80,11 +80,11 @@ Tra i dati da visualizzare, è necessario mostrare:
 \subsubsection{Servizio di visualizzazione degli statistici}
 
 Nella raccolta dei dati per il conteggio degli individui, vengono ottenute informazioni aggiuntive che possono essere considerate interessanti;
-ad esempio, interecettando i pacchetti WiFi contenenti l'indirizzo MAC di ciascun dispositivo, è possibile registrare la popolarità dei vari vendor di dispositivi dotati di WiFi.
+ad esempio, intercettando i pacchetti WiFi contenenti l'indirizzo MAC di ciascun dispositivo, è possibile registrare la popolarità dei vari vendor di dispositivi dotati di WiFi.
 
 \subsection{Requisiti non funzionali}
 
-In aggiunta ai requisiti elencati nella \Cref{subsec:req:func}, ne sono stati individuati altri di natura tecnlogica/implementativa:
+In aggiunta ai requisiti elencati nella \Cref{subsec:req:func}, ne sono stati individuati altri di natura tecnologica/implementativa:
 
 \begin{description}
   \item[Semplicità di utilizzo]
@@ -92,7 +92,7 @@ In aggiunta ai requisiti elencati nella \Cref{subsec:req:func}, ne sono stati in
     ciò significa semplificare per quanto possibile le procedure per accedere alle funzionalità del sistema (ad esempio, realizzando un interfaccia web pubblicamente accessibile).
   \item[Architettura distribuita]
     Il sistema deve essere pensato per poter scalare da un ambiente ristretto composto da un singolo edificio con singola stanza ad una struttura più estesa composta da più edifici e/o più stanze;
-    di conseguenza, affidarsi ad un'architettura monolitca sarebbe decisamente complicato e inefficiente.
+    di conseguenza, affidarsi ad un'architettura monolitica sarebbe decisamente complicato e inefficiente.
 
     Per riuscire a garantire un corretto ed efficace funzionamento del sistema, occorre prendere in considerazione un'architettura distribuita e le conseguenti problematiche:
 
